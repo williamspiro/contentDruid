@@ -26,9 +26,9 @@ _REQUIRES_
 [requests](http://docs.python-requests.org/en/master/)  
 
 _USAGE_  
-This Python python takes one agruments: `accessToken`    
+This Python python takes one agrument: `accessToken`    
 `accessToken` - An access_token for the portal you want to urlMappingLoadBulkEdit  
-This Python python also requires a JSON object file to import. This file should be called `mappingsToUpdate.json` and should live in the "Import" folder - path `import/mappingsToUpdate.json`.  This file should have a JSON object with the updated JSON of the mappings you wish to update, like:
+This Python python also requires a JSON file to import. This file should be called `mappingsToUpdate.json` and should live in the "import" folder - path `import/mappingsToUpdate.json`.  This file should have a JSON object with the updated JSON of the mappings you wish to update, like:
 ```
 [
     {  
