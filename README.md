@@ -37,5 +37,5 @@ This snake requires manually setting 4 variables: `accessToken`, `blogRootUrl`, 
 It is important that the post slugs of the external and HubSpot posts are the same. `blogRootUrl` + `postsToSoupScrubKitten[slugs]` should equal the actual URL of the posts. `slug`s should not start with a `/`, rather, `blogRootUrl` should end with a `/`
 
 ```
-$ python blogFeaturedImageSoupScrubKitten.py
+$ python blogFeaturedImageSoup.py
 ```
