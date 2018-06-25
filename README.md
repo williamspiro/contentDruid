@@ -52,7 +52,7 @@ This Python python also requires a JSON file to import. This file should be call
 Only the included JSON keys will be updated for a given mapping id included in `mappingsToUpdate.json`
 
 ```
-$ python urlMappingLoadBulkEdit.py.py 1234-5678-9123-4567  
+$ python urlMappingLoadBulkEdit.py 1234-5678-9123-4567  
 ```
 Runs `urlMappingLoadBulkEdit.py` on portal with access token `1234-5678-9123-4567`, updating each mapping id included in `mappingsToUpdate.json`, updating the included fields in each individual mapping JSON object
 
