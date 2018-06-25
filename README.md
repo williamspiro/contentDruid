@@ -3,7 +3,7 @@ A collection of Python scripts for various content object jobs. These are very p
 p.s. I like to call [Python](https://www.python.org/) scripts, "Python pythons." Why? Because it is fun :)
 
 __filesSlothRestore__ - Find and restore deleted file objects   
-__urlMappingLoadBulkEdit__ - Bulk edit URL mapping objects   
+__urlMappingLoad__ - Bulk edit and create URL mapping objects   
 __blogFeaturedImageSoup__ - Soup featured images from an external blog, upload them to the File Manager, set them as featured for the posts respective HubSpot equivalent
 ## filesSlothRestore
 A Python python to find deleted file objects and restore them  
@@ -20,15 +20,15 @@ $ python filesSlothRestore.py 1234-5678-9123-4567 1529816400000
 ```
 Runs `filesSlothRestore.py` finding files deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567`  
 
-## urlMappingLoadBulkEdit
-A Python python to bulk edit URL mapping objects  
+## urlMappingLoad
+A Python python to bulk edit and create URL mapping objects  
 _REQUIRES_  
 [requests](http://docs.python-requests.org/en/master/)  
 
 _USAGE_  
 This Python python takes one agrument: `accessToken`    
-`accessToken` - An access_token for the portal you want to urlMappingLoadBulkEdit  
-This Python python also requires a JSON file to import. This file should be called `mappingsToUpdate.json` and should live in the "import" folder - path `import/mappingsToUpdate.json`.  This file should have a JSON object with the updated JSON of the mappings you wish to update, like:
+`accessToken` - An access_token for the portal you want to urlMappingLoad  
+This Python python also requires a JSON file to import. This file should be called `mappingsToLoad.json` and should live in the "import" folder - path `import/mappingsToLoad.json`.  This file should have a JSON object with the updated JSON of the mappings you wish to update, and that of new mappings to create, like:
 ```
 [
     {  
@@ -42,19 +42,22 @@ This Python python also requires a JSON file to import. This file should be call
         "isProtocolAgnostic": false
     },
     {  
-        "id":5258860527,
-        "routePrefix":"https://www.reouteprefix.com",
+        "routePrefix":"https://www.routeprefix.com/prefix",
+        "destination":"https://www.destination.com/destination",
         "isOnlyAfterNotFound":true,
-        "precedence":123
+        "redirectStyle":301,
+        "precedence":123,
+        "isPattern": false,
+        "isMatchQueryString": true
     }
 ]
 ```
-Only the included JSON keys will be updated for a given mapping id included in `mappingsToUpdate.json`
+Only the included JSON keys will be updated for a given mapping id included in `mappingsToLoad.json` (first 2 examples). Mapping objects in `mappingsToLoad.json` without an `id` key will be created as new mappings (3rd example). 
 
 ```
-$ python urlMappingLoadBulkEdit.py 1234-5678-9123-4567  
+$ python urlMappingLoad.py 1234-5678-9123-4567  
 ```
-Runs `urlMappingLoadBulkEdit.py` on portal with access token `1234-5678-9123-4567`, updating each mapping id included in `mappingsToUpdate.json`, updating the included fields in each individual mapping JSON object
+Runs `urlMappingLoad.py` on portal with access token `1234-5678-9123-4567`, updating each mapping id included in `mappingsToLoad.json`, updating the included fields in each individual mapping JSON object, and creating a new mapping with included keys
 
 ## blogFeaturedImageSoup
 A Python python to find the featured image on an external blog, upload it to the HubSpot File Manager, and then set the HubSpot hosted version of the posts' `featuredImage` with the newly uploaded File Manager asset  
