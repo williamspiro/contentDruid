@@ -9,7 +9,7 @@ _REQUIRES_
 [requests](http://docs.python-requests.org/en/master/)  
 
 _USAGE_  
-This snake takes three agruments: `accessToken`, `slothStart` and `slothEnd`
+This snake takes three agruments: `accessToken`, `slothStart` and `slothEnd`  
 `accessToken` - an accessToken for the portal you want to filesSlothRestore  
 `slothStart` - A millisecond unix timestamp used in the `deleted_at__gt` request parameter to dictate the start time of file deletion timestamps to GET  
 `slothEnd` - A millisecond unix timestamp used in the `deleted_at__lt` request parameter to dictate the end time of file deletion timestamps to GET  
