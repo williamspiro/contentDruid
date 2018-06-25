@@ -57,7 +57,7 @@ Only the included JSON keys will be updated for a given mapping id included in `
 ```
 $ python urlMappingLoad.py 1234-5678-9123-4567  
 ```
-Runs `urlMappingLoad.py` on portal with access token `1234-5678-9123-4567`, updating each mapping id included in `mappingsToLoad.json`, updating the included fields in each individual mapping JSON object, and creating a new mapping with included keys
+Runs `urlMappingLoad.py` on portal with access token `1234-5678-9123-4567`, updating each mapping id included in `mappingsToLoad.json` with the included keys in in the first two individual mapping JSON objects, and creating a new mapping with included keys for the third
 
 ## blogFeaturedImageSoup
 A Python python to find the featured image on an external blog, upload it to the HubSpot File Manager, and then set the HubSpot hosted version of the posts' `featuredImage` with the newly uploaded File Manager asset  
