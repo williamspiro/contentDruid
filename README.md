@@ -11,7 +11,7 @@ _REQUIRES_
 
 _USAGE_  
 This snake takes three agruments: `accessToken`, `slothStart` & `slothEnd`  
-`accessToken` - An accessToken for the portal you want to filesSlothRestore  
+`accessToken` - An access_token for the portal you want to filesSlothRestore  
 `slothStart` - A millisecond unix timestamp used in the `deleted_at__gt` request parameter to dictate the start time of file deletion timestamps to GET  
 `slothEnd` - A millisecond unix timestamp used in the `deleted_at__lt` request parameter to dictate the end time of file deletion timestamps to GET  
 
@@ -29,7 +29,7 @@ _REQUIRES_
 _USAGE_  
 This snake requires manually setting 4 variables: `accessToken`, `blogRootUrl`, `featuredImageSelector` & `postsToSoupScrubKitten`
 
-`accessToken` - An accessToken for the portal you want to blogFeaturedImageSoup  
+`accessToken` - An access_token for the portal you want to blogFeaturedImageSoup  
 `blogRootUrl`- The external blogs root url 
 `featuredImageSelector` - The CSS selector which select the external blogs featured image (ex. `.featured-image img`)  
 `postsToSoupScrubKitten` - A python list of the slugs of all of the external posts to soup (ex. `["slug/post/1", "slug/post/2", "slug/post/3"]`)  
