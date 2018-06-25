@@ -3,6 +3,7 @@ A collection of Python scripts for various content object jobs. These are very p
 p.s. I like to call [Python](https://www.python.org/) scripts, "Python pythons." Why? Because it is fun :)
 
 __filesSlothRestore__ - Find and restore deleted file objects   
+__urlMappingLoadBulkEdit__ - Bulk edit URL mapping objects   
 __blogFeaturedImageSoup__ - Soup featured images from an external blog, upload them to the File Manager, set them as featured for the posts respective HubSpot equivalent
 ## filesSlothRestore
 A Python python to find deleted file objects and restore them  
