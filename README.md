@@ -10,15 +10,14 @@ _REQUIRES_
 [requests](http://docs.python-requests.org/en/master/)  
 
 _USAGE_  
-This snake takes three agruments: `accessToken`, `slothStart` & `slothEnd`  
+This snake takes two agruments: `accessToken` & `slothStart`  
 `accessToken` - An access_token for the portal you want to filesSlothRestore  
 `slothStart` - A millisecond unix timestamp used in the `deleted_at__gt` request parameter to dictate the start time of file deletion timestamps to GET  
-`slothEnd` - A millisecond unix timestamp used in the `deleted_at__lt` request parameter to dictate the end time of file deletion timestamps to GET  
 
 ```
-$ python filesSlothRestore.py 1234-5678-9123-4567 1529816400000 1529902800000
+$ python filesSlothRestore.py 1234-5678-9123-4567 1529816400000  
 ```
-Runs `filesSlothRestore.py` finding files deleted between 1529816400000 (June 24th, 2018 0:00:00) and 1529902800000 (June 25th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567`  
+Runs `filesSlothRestore.py` finding files deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567`  
 
 ## blogFeaturedImageSoup
 A Python snake to find the featured image on an external blog, upload it to the HubSpot File Manager, and then set the HubSpot hosted version of the posts' `featuredImage` with the newly uploaded File Manager asset  
