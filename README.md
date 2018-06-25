@@ -1,5 +1,5 @@
 # contentDruid
-A collection of Python scripts for various content object jobs. These are very powerful scripts, so please read the spec and use them with respect and ease. A _sloth_ is is a passive script, finding things for you.  
+A collection of Python scripts for various content object jobs. These are very powerful scripts, so please read the spec and use them with respect and ease. A _sloth_ is is a passive script, finding things for you. A _load_ requires some sort of input file. 
 p.s. I like to call [Python](https://www.python.org/) scripts, "Python pythons." Why? Because it is fun :)
 
 __filesSlothRestore__ - Find and restore deleted file objects   
@@ -10,7 +10,7 @@ _REQUIRES_
 [requests](http://docs.python-requests.org/en/master/)  
 
 _USAGE_  
-This snake takes two agruments: `accessToken` & `slothStart`  
+This Python python takes two agruments: `accessToken` & `slothStart`  
 `accessToken` - An access_token for the portal you want to filesSlothRestore  
 `slothStart` - A millisecond unix timestamp used in the `deleted_at__gt` request parameter to dictate the start time of file deletion timestamps to GET  
 
@@ -19,6 +19,42 @@ $ python filesSlothRestore.py 1234-5678-9123-4567 1529816400000
 ```
 Runs `filesSlothRestore.py` finding files deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567`  
 
+## urlMappingLoadBulkEdit
+A Python python to bulk edit URL mapping objects  
+_REQUIRES_  
+[requests](http://docs.python-requests.org/en/master/)  
+
+_USAGE_  
+This Python python takes one agruments: `accessToken`    
+`accessToken` - An access_token for the portal you want to urlMappingLoadBulkEdit  
+This Python python also requires a JSON object file to import. This file should be called `mappingsToUpdate.json` and should live in the "Import" folder - path `import/mappingsToUpdate.json`.  This file should have a JSON object with the updated JSON of the mappings you wish to update, like:
+```
+[
+    {  
+        "id":5265745360,
+        "destination":"https://www.destination.com",
+        "redirectStyle":301
+    },
+    {  
+        "id":4967273182,
+        "isMatchFullUrl": true,
+        "isProtocolAgnostic": false
+    },
+    {  
+        "id":5258860527,
+        "routePrefix":"https://www.reouteprefix.com",
+        "isOnlyAfterNotFound":true,
+        "precedence":123
+    }
+]
+```
+Only the included JSON keys will be updated for a given mapping id included in `mappingsToUpdate.json`
+
+```
+$ python urlMappingLoadBulkEdit.py.py 1234-5678-9123-4567  
+```
+Runs `urlMappingLoadBulkEdit.py` on portal with access token `1234-5678-9123-4567`, updating each mapping id included in `mappingsToUpdate.json`, updating the included fields in each individual mapping JSON object
+
 ## blogFeaturedImageSoup
 A Python python to find the featured image on an external blog, upload it to the HubSpot File Manager, and then set the HubSpot hosted version of the posts' `featuredImage` with the newly uploaded File Manager asset  
 _REQUIRES_  
@@ -26,7 +62,7 @@ _REQUIRES_
 [requests](http://docs.python-requests.org/en/master/)  
 
 _USAGE_  
-This snake requires manually setting 4 variables: `accessToken`, `blogRootUrl`, `featuredImageSelector` & `postsToSoupScrubKitten`
+This Python python requires manually setting 4 variables: `accessToken`, `blogRootUrl`, `featuredImageSelector` & `postsToSoupScrubKitten`
 
 `accessToken` - An access_token for the portal you want to blogFeaturedImageSoup  
 `blogRootUrl`- The external blogs root url 
