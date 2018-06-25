@@ -16,7 +16,7 @@ This snake takes three agruments: `accessToken`, `slothStart` & `slothEnd`
 `slothEnd` - A millisecond unix timestamp used in the `deleted_at__lt` request parameter to dictate the end time of file deletion timestamps to GET  
 
 ```
-$ filesSlothRestore.py 1234-5678-9123-4567 1529816400000 1529902800000
+$ python filesSlothRestore.py 1234-5678-9123-4567 1529816400000 1529902800000
 ```
 Runs `filesSlothRestore.py` finding files deleted between 1529816400000 (June 24th, 2018 0:00:00) and 1529902800000 (June 25th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567`  
 
