@@ -6,7 +6,7 @@ import sys
 accessToken = sys.argv[1]
 slothStart = sys.argv[2]
 filesApiBase = "https://api.hubapi.com/filemanager/api/v2/files"
-filesSlothApiQuery = "access_token={}&include_deleted=true&deleted_at__gt={}".format(accessToken, slothStart)
+filesSlothApiQuery = "access_token={}&include_deleted=true&deleted_at__gt={}&limit=1000".format(accessToken, slothStart)
 
 slothedFiles = requests.get(filesApiBase, params=filesSlothApiQuery)
 slothedFileObjects = slothedFiles.json()["objects"]
