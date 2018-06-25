@@ -17,7 +17,7 @@ print "Hold your butts! Restoring {} files :butt-holdings:".format(deletedFileId
 for slothedFileObject in slothedFileObjects:
     slothedFileId = slothedFileObject["id"]
     filesApiRestore = "{}/{}/restore-deleted?access_token={}".format(filesApiBase, fileId, accessToken)
-    restoreFile = requests.put(filesApiRestore)
+    restoreFile = requests.post(filesApiRestore)
     if restoreFile.response_code == 200:
         print "Restored file id {}".format(fileId)
     else:
