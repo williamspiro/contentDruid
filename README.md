@@ -2,8 +2,7 @@
 A collection of Python scripts for various content object jobs. These are very powerful scripts, so please read the spec and use them with respect and ease. A _sloth_ is is a passive script, finding things for you.  
 p.s. I like to call [Python](https://www.python.org/) scripts, "snakes." Why? Because it is fun :)
 
-## Python SNAKES
-### __filesSlothRestore__ - Find and restore deleted file objects  
+__filesSlothRestore__ - Find and restore deleted file objects  
 ## filesSlothRestore
 A Python snake to find deleted file objects and restore them  
 _REQUIRES_  
