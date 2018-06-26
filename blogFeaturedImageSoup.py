@@ -19,7 +19,7 @@ for x in postsToSoupScrubKitten:
     fiSource = fi[0]['src']
 
     filePostUrl = "{}filemanager/api/v2/files/download-from-url{}".format(apiBase, queryParams)
-    filePostPayload = {"name":"blork","url":fiSource}
+    filePostPayload = {"url":fiSource}
     fileObject = requests.post(filePostUrl, json=filePostPayload)
     fileUrl = fileObject.json()["url"]
     print "Created file URL {}".format(fileUrl)
