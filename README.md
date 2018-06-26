@@ -5,6 +5,7 @@ p.s. I like to call [Python](https://www.python.org/) scripts, "Python pythons."
 __filesSlothRestore__ - Find and restore deleted file objects   
 __urlMappingLoad__ - Bulk edit and create URL mapping objects   
 __blogFeaturedImageSoup__ - Soup featured images from an external blog, upload them to the File Manager, set them as featured for the posts respective HubSpot equivalent
+__cmsFinder__ - Figures out which CMS a page uses  
 ## filesSlothRestore
 A Python python to find deleted file objects and restore them  
 _REQUIRES_  
@@ -58,6 +59,20 @@ Only the included JSON keys will be updated for a given mapping id included in `
 $ python urlMappingLoad.py 1234-5678-9123-4567  
 ```
 Runs `urlMappingLoad.py` on portal with access token `1234-5678-9123-4567`, updating each mapping id included in `mappingsToLoad.json` with the included keys in in the first two individual mapping JSON objects, and creating a new mapping with included keys for the third
+
+## cmsFinder
+_REQUIRES_  
+[BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)  
+
+_USAGE_  
+This Python python figures out which CMS a page uses. Requyires creating a Python list in `pagesToScrub` of the pages/sites to crawl, like: 
+```
+pagesToScrub = ["http://www.puppy.com", "http://cats.com", ...]
+```  
+This will output the CMS a site uses based on the `meta name="generator"` HTML tag.
+```
+$ python cmsFinder.py
+```
 
 ## blogFeaturedImageSoup
 A Python python to find the featured image on an external blog, upload it to the HubSpot File Manager, and then set the HubSpot hosted version of the posts' `featuredImage` with the newly uploaded File Manager asset  
