@@ -5,8 +5,10 @@ Eveything is written in __Python 3.6.5__ with 3.X in mind
 
 __filesSlothRestore__ - Find and restore deleted file objects   
 __urlMappingLoad__ - Bulk edit and create URL mapping objects   
-__blogFeaturedImageSoup__ - Soup featured images from an external blog, upload them to the File Manager, set them as featured for the posts respective HubSpot equivalent
 __cmsFinder__ - Figures out which CMS a page uses  
+__blogFeaturedImageSoup__ - Soup featured images from an external blog, upload them to the File Manager, set them as featured for the posts respective HubSpot equivalent  
+__filesDeleteLoad__ - Deletes file objects by id  
+
 ## filesSlothRestore
 A Python python to find deleted file objects and restore them  
 _REQUIRES_  
@@ -66,14 +68,12 @@ _REQUIRES_
 [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)  
 
 _USAGE_  
-This Python python figures out which CMS a page uses. Requyires creating a Python list in `pagesToScrub` of the pages/sites to crawl, like: 
-```
-pagesToScrub = ["http://www.puppy.com", "http://cats.com", ...]
-```  
-This will output the CMS a site uses based on the `meta name="generator"` HTML tag. If there is no `generator` meta tag, we will look for some other common signs of certain CMSs.
+This Python python figures out which CMS a page uses. Requyires creating a Python list in `pagesToScrub` of the pages/sites to crawl, like: `pagesToScrub = ["http://www.puppy.com", "http://cats.com", ...]` 
 ```
 $ python3 cmsFinder.py
 ```
+This will output the CMS a site uses based on the `meta name="generator"` HTML tag. If there is no `generator` meta tag, we will look for some other common signs of certain CMSs.
+
 
 ## blogFeaturedImageSoup
 A Python python to find the featured image on an external blog, upload it to the HubSpot File Manager, and then set the HubSpot hosted version of the posts' `featuredImage` with the newly uploaded File Manager asset  
@@ -94,3 +94,19 @@ It is important that the post slugs of the external and HubSpot posts are the sa
 ```
 $ python3 blogFeaturedImageSoup.py
 ```
+
+## filesDeleteLoad.py
+DELETES file objects by id
+_REQUIRES_  
+[requests](http://docs.python-requests.org/en/master/)  
+
+_USAGE_  
+This Python python takes one agrument: `accessToken`    
+`accessToken` - An access_token for the portal you want to filesDeleteLoad  
+
+It also requires a Python list of file object ids to delete, set in the `filesToDelete` variable, like: `filesToDelete = [1234, 5678, 3658, 8573]`  
+
+```
+$ python3 filesDeleteLoad.py 1234-5678-9123-4567
+```
+Runs `filesDeleteLoad.py` on portal with access token `1234-5678-9123-4567`, DELETING every file object id in the `filesToDelete` variable
