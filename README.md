@@ -1,6 +1,7 @@
 # contentDruid
 A collection of Python scripts for various content object jobs. These are very powerful scripts, so please read the spec and use them with respect and ease. A _sloth_ is is a passive script, finding things for you. A _load_ requires some sort of input file. 
-p.s. I like to call [Python](https://www.python.org/) scripts, "Python pythons." Why? Because it is fun :)
+p.s. I like to call [Python](https://www.python.org/) scripts, "Python pythons." Why? Because it is fun :)  
+Eveything is written in __Python 3.6.5__ with 3.X in mind  
 
 __filesSlothRestore__ - Find and restore deleted file objects   
 __urlMappingLoad__ - Bulk edit and create URL mapping objects   
@@ -17,7 +18,7 @@ This Python python takes two agruments: `accessToken` & `slothStart`
 `slothStart` - A millisecond unix timestamp used in the `deleted_at__gt` request parameter to dictate the start time of file deletion timestamps to GET  
 
 ```
-$ python filesSlothRestore.py 1234-5678-9123-4567 1529816400000  
+$ python3 filesSlothRestore.py 1234-5678-9123-4567 1529816400000  
 ```
 Runs `filesSlothRestore.py` finding files deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567`  
 
@@ -56,7 +57,7 @@ This Python python also requires a JSON file to import. This file should be call
 Only the included JSON keys will be updated for a given mapping id included in `mappingsToLoad.json` (first 2 examples). Mapping objects in `mappingsToLoad.json` without an `id` key will be created as new mappings (3rd example). 
 
 ```
-$ python urlMappingLoad.py 1234-5678-9123-4567  
+$ python3 urlMappingLoad.py 1234-5678-9123-4567  
 ```
 Runs `urlMappingLoad.py` on portal with access token `1234-5678-9123-4567`, updating each mapping id included in `mappingsToLoad.json` with the included keys in in the first two individual mapping JSON objects, and creating a new mapping with included keys for the third
 
@@ -69,9 +70,9 @@ This Python python figures out which CMS a page uses. Requyires creating a Pytho
 ```
 pagesToScrub = ["http://www.puppy.com", "http://cats.com", ...]
 ```  
-This will output the CMS a site uses based on the `meta name="generator"` HTML tag.
+This will output the CMS a site uses based on the `meta name="generator"` HTML tag. If there is no `generator` meta tag, we will look for some other common signs of certain CMSs.
 ```
-$ python cmsFinder.py
+$ python3 cmsFinder.py
 ```
 
 ## blogFeaturedImageSoup
@@ -91,5 +92,5 @@ This Python python requires manually setting 4 variables: `accessToken`, `blogRo
 It is important that the post slugs of the external and HubSpot posts are the same. `blogRootUrl` + `postsToSoupScrubKitten[slugs]` should equal the actual URL of the posts. `slug`s should not start with a `/`, rather, `blogRootUrl` should end with a `/`
 
 ```
-$ python blogFeaturedImageSoup.py
+$ python3 blogFeaturedImageSoup.py
 ```
