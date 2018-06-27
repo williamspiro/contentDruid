@@ -96,7 +96,7 @@ $ python3 blogFeaturedImageSoup.py
 ```
 
 ## filesDeleteLoad.py
-DELETES file objects by id
+DELETES file objects by id  
 _REQUIRES_  
 [requests](http://docs.python-requests.org/en/master/)  
 
