@@ -3,13 +3,13 @@ A collection of Python scripts for various content object jobs. These are very p
 p.s. I like to call [Python](https://www.python.org/) scripts, "Python pythons." Why? Because it is fun :)  
 Eveything is written in __Python 3.6.5__ with 3.X in mind  
 
-__filesSlothRestore__ - Find and restore deleted file objects   
-__urlMappingLoad__ - Bulk edit and create URL mapping objects   
-__cmsFinder__ - Figures out which CMS a page uses  
-__blogFeaturedImageSoup__ - Soup featured images from an external blog, upload them to the File Manager, set them as featured for the posts respective HubSpot equivalent  
-__filesDeleteLoad__ - Deletes file objects by id  
+__filesSlothRestore.py__ - Find and restore deleted file objects   
+__urlMappingLoad.py__ - Bulk edit and create URL mapping objects   
+__cmsFinder.py__ - Figures out which CMS a page uses  
+__blogFeaturedImageSoup.py__ - Soup featured images from an external blog, upload them to the File Manager, set them as featured for the posts respective HubSpot equivalent  
+__filesDeleteLoad.py__ - Deletes file objects by id  
 
-## filesSlothRestore
+## filesSlothRestore.py
 A Python python to find deleted file objects and restore them  
 _REQUIRES_  
 [requests](http://docs.python-requests.org/en/master/)  
@@ -24,7 +24,7 @@ $ python3 filesSlothRestore.py 1234-5678-9123-4567 1529816400000
 ```
 Runs `filesSlothRestore.py` finding files deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567`  
 
-## urlMappingLoad
+## urlMappingLoad.py
 A Python python to bulk edit and create URL mapping objects  
 _REQUIRES_  
 [requests](http://docs.python-requests.org/en/master/)  
@@ -63,7 +63,7 @@ $ python3 urlMappingLoad.py 1234-5678-9123-4567
 ```
 Runs `urlMappingLoad.py` on portal with access token `1234-5678-9123-4567`, updating each mapping id included in `mappingsToLoad.json` with the included keys in in the first two individual mapping JSON objects, and creating a new mapping with included keys for the third
 
-## cmsFinder
+## cmsFinder.py
 _REQUIRES_  
 [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)  
 
@@ -75,7 +75,7 @@ $ python3 cmsFinder.py
 This will output the CMS a site uses based on the `meta name="generator"` HTML tag. If there is no `generator` meta tag, we will look for some other common signs of certain CMSs.
 
 
-## blogFeaturedImageSoup
+## blogFeaturedImageSoup.py
 A Python python to find the featured image on an external blog, upload it to the HubSpot File Manager, and then set the HubSpot hosted version of the posts' `featuredImage` with the newly uploaded File Manager asset  
 _REQUIRES_  
 [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)  
