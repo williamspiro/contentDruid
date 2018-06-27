@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import urllib2
+from urllib.request import urlopen
 import requests
 import json
 
@@ -8,30 +8,30 @@ blogRootUrl = "http://www.blogrooturl.com/"
 featuredImageSelector = ".featured-image img"
 postsToSoupScrubKitten = ["slug/post/1", "slug/post/2", "slug/post/3"]
 
-queryParams = "?access_token={}".format(accessToken)
+queryParams = (f"?access_token={accessToken}")
 apiBase = "https://api.hubapi.com/"
 
 for x in postsToSoupScrubKitten:
     slug = (x)
-    page = urllib2.urlopen(blogRootUrl + slug)
+    page = urlopen(blogRootUrl + slug)
     soup = BeautifulSoup(page, "html.parser")
     fi = soup.select(featuredImageSelector)
     fiSource = fi[0]['src']
 
-    filePostUrl = "{}filemanager/api/v2/files/download-from-url{}".format(apiBase, queryParams)
+    filePostUrl = (f"{apiBase}filemanager/api/v2/files/download-from-url{queryParams}")
     filePostPayload = {"url":fiSource}
     fileObject = requests.post(filePostUrl, json=filePostPayload)
     fileUrl = fileObject.json()["url"]
-    print "Created file URL {}".format(fileUrl)
+    print (f"Created file URL {fileUrl}")
 
-    blogsGetSearchUrlParams = "{}&slug={}&property=slug&property=id".format(queryParams, slug)
-    blogsGetSearchUrl = "{}/blogs/v3/blog-posts".format(apiBase)
+    blogsGetSearchUrlParams = (f"{queryParams}&slug={slug}&property=slug&property=id")
+    blogsGetSearchUrl = (f"{apiBase}/blogs/v3/blog-posts")
     blogSearchObject = requests.get(blogsGetSearchUrl, params=blogsGetSearchUrlParams)
     postIds = blogSearchObject.json()["objects"]
     postId = postIds[0]["id"]
-    print "Found post id {} with slug {}".format(postId, slug)
+    print (f"Found post id {postId} with slug {slug}")
 
-    pageUpdateUrl = "{}blogs/v3/blog-posts/{}{}".format(apiBase, postId, queryParams)
+    pageUpdateUrl = (f"{apiBase}blogs/v3/blog-posts/{postId}{queryParams}")
     pageUpdatePayload = filePostPayload = {"useFeaturedImage":"true", "featuredImage":fileUrl}
     pageObject = requests.put(pageUpdateUrl, json=pageUpdatePayload)
-    print "Set {} as the featuredImage for post id {}".format(fileUrl, postId)
+    print (f"Set {fileUrl} as the featuredImage for post id {postId}")

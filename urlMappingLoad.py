@@ -13,19 +13,19 @@ for mappingObjectJson in mappingData:
     if "id" in mappingObjectJson:
         mappingObjectId = mappingObjectJson["id"]
         del mappingObjectJson["id"]
-        editMappingApiRequest = "{}/{}?access_token={}".format(mappingsApiBase, mappingObjectId, accessToken)
+        editMappingApiRequest = (f"{mappingsApiBase}/{mappingObjectId}?access_token={accessToken}")
         mappingObject = requests.put(editMappingApiRequest, json=mappingObjectJson)
         if mappingObject.status_code == 200:
-            print "Updated URL mapping id {}".format(mappingObjectId)
+            print (f"Updated URL mapping id {mappingObjectId}")
         else:
-            print "Hmmm, something went wrong updating URL mapping {}. The error was {}".format(mappingObjectId, mappingObject.text)
+            print (f"Hmmm, something went wrong updating URL mapping {mappingObjectId}. The error was {mappingObject.text}")
     else:
         createMappingApiRequest = "{}?access_token={}".format(mappingsApiBase, accessToken)
         newMappingObject = requests.post(createMappingApiRequest, json=mappingObjectJson)
         if newMappingObject.status_code == 201:
             newMappingPrefix = newMappingObject.json()["routePrefix"]
             newMappingDestination = newMappingObject.json()["destination"]
-            print "Wahoo! Created a new mapping with redirect path {} and desitnation {}".format(newMappingPrefix, newMappingDestination)
+            print (f"Wahoo! Created a new mapping with redirect path {newMappingPrefix} and desitnation {newMappingDestination}")
         else:
-            print "Hmmm, something went wrong creating this url mapping. The error was {}".format(newMappingObject.text)
+            print (f"Hmmm, something went wrong creating this url mapping. The error was {newMappingObject.text}")
     sleep(.33)
