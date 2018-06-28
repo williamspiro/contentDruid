@@ -23,7 +23,7 @@ def cmsTextMatch (html):
         return ("Wix")
     elif b"wp-content" in html or b"wordpress" in html or b"wp-json" in html: 
         return ("Wordpress")
-    elif b"squarespace" in html: # or b"squarespace" in html
+    elif b"static1.squarespace.com" in html or b"squarespace" in html: 
         return ("Squarespace")
     elif b"weebly" in html:
         return ("Weebly")
