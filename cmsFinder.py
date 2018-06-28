@@ -1,35 +1,60 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
+import requests
+import json
 
 pagesToScrub = ["http://www.puppy.com", "http://cats.com", "http://www.kittens.com"]
+psiBaseApi = (r"https://www.googleapis.com/pagespeedonline/v4/runPagespeed?url=http%3A%2F%2F")
+print ("Domain, CMS, Desktop PSI Score, Mobile PSI Score")
+
+def psiGrade (gradeUri):
+    psiDataObject = requests.get(gradeUri)
+    if psiDataObject.json()["id"]:
+        jsonPsiDataObject = psiDataObject.json()["ruleGroups"]
+        psiSpeed = jsonPsiDataObject["SPEED"]["score"]
+        return (psiSpeed)
+    else:
+        return ("unknown")
 
 for pageToScrub in pagesToScrub:
+    cms = ""
+    deskPsiGrade = ""
+    mobPsiGrade = ""
     try:
         page = urlopen(pageToScrub)
     except HTTPError as e:
-        print (f"hmmm, I had a hard time fetching {pageToScrub}")
+        cms = ("unknown")
     except URLError as e:
-        print (f"hmmm, I had a hard time fetching {pageToScrub}")
+        cms = ("unknown")
     else:
         soup = BeautifulSoup(page, "html.parser")
         if soup.find(attrs={"name":"generator"}):
             cmsMeta = soup.find(attrs={"name":"generator"})
             cms = cmsMeta.get("content")
-            print (f"{pageToScrub} uses the cms {cms}")
         else:
             html = page.read()
             if b"wp-content" or b"wordpress" or b"wp-json" in html:
-                print (f"{pageToScrub} uses the cms Wordpress")
+                cms = ("Wordpress")
             elif b"static.wixstatic.com" or b"wix" in html:
-                print (f"{pageToScrub} uses the cms Wix")
+                cms = ("Wix")
             elif b"static1.squarespace.com" or b"squarespace" in html:
-                print (f"{pageToScrub} uses the cms Squarespace")
+                cms = ("Squarespace")
             elif b"weebly" in html:
-                print (f"{pageToScrub} uses the cms Weebly")
+                cms = ("Weebly")
             elif b"drupal" in html:
-                print (f"{pageToScrub} uses the cms Drupal")
+                cms = ("Drupal")
             elif b"craftCMS" or b"CRAFT" in html:
-                print (f"{pageToScrub} uses the cms Craft")
+                cms = ("CRAFT")
             else:
-                print (f"hmmm, I was not able to figure out which cms {pageToScrub} uses")
+                cms = ("unknown")
+    psiGradableUri = pageToScrub.split("//")[1]
+    psiDeskReqUri = (f"{psiBaseApi}{psiGradableUri}&fields=id%2CruleGroups")
+    psiMobReqUri = (f"{psiBaseApi}{psiGradableUri}&fields=id%2CruleGroups&strategy=mobile")
+    deskPsiGrade = psiGrade(psiDeskReqUri)
+    mobPsiGrade = psiGrade(psiMobReqUri)
+
+    print (f"{pageToScrub}, {cms}, {deskPsiGrade}, {mobPsiGrade}")
+
+
+
