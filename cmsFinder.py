@@ -1,17 +1,17 @@
 from bs4 import BeautifulSoup
-from urllib.request import urlopen
+import urllib.request
 from urllib.error import HTTPError, URLError
 import requests
 import json
 
 pagesToScrub = ["http://www.puppy.com", "http://cats.com", "http://www.kittens.com"]
-
 psiBaseApi = (r"https://www.googleapis.com/pagespeedonline/v4/runPagespeed?url=http%3A%2F%2F")
 print ("Domain, CMS, Desktop PSI Score, Mobile PSI Score")
+userAgent= {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36'}
 
 def psiGrade (gradeUri):
     psiDataObject = requests.get(gradeUri)
-    if psiDataObject.json()["id"]:
+    if "id" in psiDataObject.json():
         jsonPsiDataObject = psiDataObject.json()["ruleGroups"]
         psiSpeed = jsonPsiDataObject["SPEED"]["score"]
         return (psiSpeed)
@@ -39,7 +39,8 @@ for pageToScrub in pagesToScrub:
     deskPsiGrade = ""
     mobPsiGrade = ""
     try:
-        page = urlopen(pageToScrub)
+        req = urllib.request.Request(pageToScrub, headers=userAgent)
+        page = urllib.request.urlopen(req)
     except HTTPError as e:
         cms = ("unknown")
     except URLError as e:
@@ -50,7 +51,15 @@ for pageToScrub in pagesToScrub:
             cmsMeta = soup.find(attrs={"name":"generator"})
             cms = cmsMeta.get("content")
         else:
-            cms = cmsTextMatch(urlopen(pageToScrub).read())
+            try:
+                req = urllib.request.Request(pageToScrub, headers=userAgent)
+                page2 = urllib.request.urlopen(req)
+            except HTTPError as e:
+                cms = ("unknown")
+            except URLError as e:
+                cms = ("unknown")
+            else:
+                cms = cmsTextMatch(page2.read())
             
     psiGradableUri = pageToScrub.split("//")[1]
     psiDeskReqUri = (f"{psiBaseApi}{psiGradableUri}&fields=id%2CruleGroups")
