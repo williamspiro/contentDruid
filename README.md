@@ -5,8 +5,7 @@ Eveything is written in __Python 3.6.5__ with 3.X in mind
 
 __filesSlothRestore.py__ - Find and restore deleted file objects   
 __urlMappingLoad.py__ - Bulk edit and create URL mapping objects   
-__cmsFinder.py__ - Figures out which CMS a page uses  
-__blogFeaturedImageSoup.py__ - Soup featured images from an external blog, upload them to the File Manager, set them as featured for the posts respective HubSpot equivalent  
+__cmsFinder.py__ - Figures out which CMS a page uses and grades it in PSI (desktop and mobile)   
 __filesDeleteLoad.py__ - Deletes file objects by id  
 
 ## filesSlothRestore.py
@@ -68,32 +67,11 @@ _REQUIRES_
 [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)  
 
 _USAGE_  
-This Python python figures out which CMS a page uses. Requyires creating a Python list in `pagesToScrub` of the pages/sites to crawl, like: `pagesToScrub = ["http://www.puppy.com", "http://cats.com", ...]` 
+This Python python figures out which CMS a page uses and grades it in PSI mobile and desktop. Requyires creating a Python list in `pagesToScrub` of the pages/sites to crawl, like: `pagesToScrub = ["http://www.puppy.com", "http://cats.com", ...]` 
 ```
 $ python3 cmsFinder.py
 ```
 This will output the CMS a site uses based on the `meta name="generator"` HTML tag. If there is no `generator` meta tag, we will look for some other common signs of certain CMSs.
-
-
-## blogFeaturedImageSoup.py
-A Python python to find the featured image on an external blog, upload it to the HubSpot File Manager, and then set the HubSpot hosted version of the posts' `featuredImage` with the newly uploaded File Manager asset  
-_REQUIRES_  
-[BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)  
-[requests](http://docs.python-requests.org/en/master/)  
-
-_USAGE_  
-This Python python requires manually setting 4 variables: `accessToken`, `blogRootUrl`, `featuredImageSelector` & `postsToSoupScrubKitten`
-
-`accessToken` - An access_token for the portal you want to blogFeaturedImageSoup  
-`blogRootUrl`- The external blogs root url 
-`featuredImageSelector` - The CSS selector which select the external blogs featured image (ex. `.featured-image img`)  
-`postsToSoupScrubKitten` - A python list of the slugs of all of the external posts to soup (ex. `["slug/post/1", "slug/post/2", "slug/post/3"]`)  
-
-It is important that the post slugs of the external and HubSpot posts are the same. `blogRootUrl` + `postsToSoupScrubKitten[slugs]` should equal the actual URL of the posts. `slug`s should not start with a `/`, rather, `blogRootUrl` should end with a `/`
-
-```
-$ python3 blogFeaturedImageSoup.py
-```
 
 ## filesDeleteLoad.py
 DELETES file objects by id  
