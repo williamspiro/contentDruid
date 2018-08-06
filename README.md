@@ -4,10 +4,10 @@ p.s. I like to call [Python](https://www.python.org/) scripts, "Python pythons."
 Eveything is written in __Python 3.6.5__ with 3.X in mind  
 
 __filesSlothRestore.py__ - Find and restore deleted file objects   
+__filesDeleteLoad.py__ - Deletes file objects by id  
 __urlMappingLoad.py__ - Bulk edit and create URL mapping objects   
 __urlMappingSlothRestore.py__ - Find and restore deleted mapping objects   
 __cmsFinder.py__ - Figures out which CMS a page uses and grades it in PSI (desktop and mobile)   
-__filesDeleteLoad.py__ - Deletes file objects by id  
 
 ## filesSlothRestore.py
 A Python python to find deleted file objects and restore them  
@@ -23,6 +23,22 @@ This Python python takes two agruments: `accessToken` & `slothStart`
 $ python3 filesSlothRestore.py 1234-5678-9123-4567 1529816400000  
 ```
 Runs `filesSlothRestore.py` finding files deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567`  
+
+## filesDeleteLoad.py
+DELETES file objects by id  
+_REQUIRES_  
+[requests](http://docs.python-requests.org/en/master/)  
+
+_USAGE_  
+This Python python takes one agrument: `accessToken`    
+`accessToken` - An access_token for the portal you want to filesDeleteLoad  
+
+It also requires a Python list of file object ids to delete, set in the `filesToDelete` variable, like: `filesToDelete = [1234, 5678, 3658, 8573]`  
+
+```
+$ python3 filesDeleteLoad.py 1234-5678-9123-4567
+```
+Runs `filesDeleteLoad.py` on portal with access token `1234-5678-9123-4567`, DELETING every file object id in the `filesToDelete` variable
 
 ## urlMappingLoad.py
 A Python python to bulk edit and create URL mapping objects  
@@ -88,19 +104,3 @@ This Python python figures out which CMS a page uses and grades it in PSI mobile
 $ python3 cmsFinder.py
 ```
 This will output the CMS a site uses based on the `meta name="generator"` HTML tag. If there is no `generator` meta tag, we will look for some other common signs of certain CMSs.
-
-## filesDeleteLoad.py
-DELETES file objects by id  
-_REQUIRES_  
-[requests](http://docs.python-requests.org/en/master/)  
-
-_USAGE_  
-This Python python takes one agrument: `accessToken`    
-`accessToken` - An access_token for the portal you want to filesDeleteLoad  
-
-It also requires a Python list of file object ids to delete, set in the `filesToDelete` variable, like: `filesToDelete = [1234, 5678, 3658, 8573]`  
-
-```
-$ python3 filesDeleteLoad.py 1234-5678-9123-4567
-```
-Runs `filesDeleteLoad.py` on portal with access token `1234-5678-9123-4567`, DELETING every file object id in the `filesToDelete` variable
