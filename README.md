@@ -64,7 +64,7 @@ $ python3 urlMappingLoad.py 1234-5678-9123-4567
 Runs `urlMappingLoad.py` on portal with access token `1234-5678-9123-4567`, updating each mapping id included in `mappingsToLoad.json` with the included keys in in the first two individual mapping JSON objects, and creating a new mapping with included keys for the third
 
 ## urlMappingSlothRestore.py
-A Python python to find deleted file mapping and restore them  
+A Python python to find deleted mappings and restore them  
 _REQUIRES_  
 [requests](http://docs.python-requests.org/en/master/)  
 
