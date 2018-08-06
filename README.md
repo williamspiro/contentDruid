@@ -5,6 +5,7 @@ Eveything is written in __Python 3.6.5__ with 3.X in mind
 
 __filesSlothRestore.py__ - Find and restore deleted file objects   
 __urlMappingLoad.py__ - Bulk edit and create URL mapping objects   
+__urlMappingSlothRestore.py__ - Find and restore deleted mapping objects   
 __cmsFinder.py__ - Figures out which CMS a page uses and grades it in PSI (desktop and mobile)   
 __filesDeleteLoad.py__ - Deletes file objects by id  
 
@@ -61,6 +62,21 @@ Only the included JSON keys will be updated for a given mapping id included in `
 $ python3 urlMappingLoad.py 1234-5678-9123-4567  
 ```
 Runs `urlMappingLoad.py` on portal with access token `1234-5678-9123-4567`, updating each mapping id included in `mappingsToLoad.json` with the included keys in in the first two individual mapping JSON objects, and creating a new mapping with included keys for the third
+
+## urlMappingSlothRestore.py
+A Python python to find deleted file mapping and restore them  
+_REQUIRES_  
+[requests](http://docs.python-requests.org/en/master/)  
+
+_USAGE_  
+This Python python takes two agruments: `accessToken` & `slothStart`  
+`accessToken` - An access_token for the portal you want to urlMappingSlothRestore  
+`slothStart` - A millisecond unix timestamp used in the `deleted_at__gt` request parameter to dictate the start time of file deletion timestamps to GET  
+
+```
+$ python3 urlMappingSlothRestore.py 1234-5678-9123-4567 1529816400000  
+```
+Runs `urlMappingSlothRestore.py` finding mappings deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567` 
 
 ## cmsFinder.py
 _REQUIRES_  
