@@ -1,0 +1,21 @@
+[
+    {  
+        "id":5265745360,
+        "destination":"https://www.destination.com",
+        "redirectStyle":301
+    },
+    {  
+        "id":4967273182,
+        "isMatchFullUrl": true,
+        "isProtocolAgnostic": false
+    },
+    {  
+        "routePrefix":"https://www.routeprefix.com/prefix",
+        "destination":"https://www.destination.com/destination",
+        "isOnlyAfterNotFound":true,
+        "redirectStyle":301,
+        "precedence":123,
+        "isPattern": false,
+        "isMatchQueryString": true
+    }
+]
