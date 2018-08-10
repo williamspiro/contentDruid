@@ -54,9 +54,3 @@ for post in posts:
         print (f"Replaced cdn1 images in post {postId}")
     else:
         print (f"Found no cdn1 images to replace in post {postId}")
-
-    
-
-
-
-
