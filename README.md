@@ -8,6 +8,7 @@ __filesDeleteLoad.py__ - Deletes file objects by id
 __urlMappingLoad.py__ - Bulk edit and create URL mapping objects   
 __urlMappingSlothRestore.py__ - Find and restore deleted mapping objects   
 __cmsFinder.py__ - Figures out which CMS a page uses and grades it in PSI (desktop and mobile)   
+__cdn1Replacer.py__ - Finds cdn1 image src uri in post bodies, and replaces them with newly uploaded cdn2 files  
 
 ## filesSlothRestore.py
 A Python python to find deleted file objects and restore them  
@@ -104,3 +105,16 @@ This Python python figures out which CMS a page uses and grades it in PSI mobile
 $ python3 cmsFinder.py
 ```
 This will output the CMS a site uses based on the `meta name="generator"` HTML tag. If there is no `generator` meta tag, we will look for some other common signs of certain CMSs.
+
+## cdn1Replacer.py
+_REQUIRES_  
+[requests](http://docs.python-requests.org/en/master/)  
+
+_USAGE_  
+This Python python finds cdn1 images in post bodies, creates a cdn2 version of the file, and updates the post body to use the new cdn2 image srcs. This Python python takes two agruments: `accessToken` & `contentGroupId`  
+`accessToken` - An access_token for the portal you want to urlMappingSlothRestore  
+`contentGroupId` - The blog object Id you wish to cdn1Replacer.py  
+```
+$ python3 cdn1Replacer.py 1234-5678-9123-4567  6053289841
+```
+This will look at the post bodies of all blog posts in blog id 6053289841, fnding all cdn1 image sources, creating a new cdn2 file, forumlating a new post body with the cdn2 image sources, and updating the blog post
