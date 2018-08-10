@@ -42,7 +42,7 @@ $ python3 filesDeleteLoad.py 1234-5678-9123-4567
 Runs `filesDeleteLoad.py` on portal with access token `1234-5678-9123-4567`, DELETING every file object id in the `filesToDelete` variable
 
 ## urlMappingLoad.py
-A Python python to bulk edit and create URL mapping objects  
+A Python python to bulk edit and create URL mapping objects. Regex `(!DEL!).*?[\d]+` is a good way to remove the `!DEL!<some number>` from restored mappings    
 _REQUIRES_  
 [requests](http://docs.python-requests.org/en/master/)  
 
@@ -81,7 +81,7 @@ $ python3 urlMappingLoad.py 1234-5678-9123-4567
 Runs `urlMappingLoad.py` on portal with access token `1234-5678-9123-4567`, updating each mapping id included in `mappingsToLoad.json` with the included keys in in the first two individual mapping JSON objects, and creating a new mapping with included keys for the third
 
 ## urlMappingSlothRestore.py
-A Python python to find deleted mappings and restore them  
+A Python python to find deleted mappings and restore them. Regex `(!DEL!).*?[\d]+` is a good way to remove the `!DEL!<some number>` from restored mappings     
 _REQUIRES_  
 [requests](http://docs.python-requests.org/en/master/)  
 
