@@ -21,5 +21,5 @@ for slothedPostObject in slothedPostObjects:
     if restorePost.status_code == 200:
         print (f"Restored post id {slothedPostId}")
     else:
-        print (f"Hmmm, something wen wrong resoring file id {slothedPostId}")
+        print (f"Hmmm, something wen wrong resoring post id {slothedPostId}")
     sleep(.33)
