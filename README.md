@@ -7,6 +7,7 @@ __filesSlothRestore.py__ - Find and restore deleted file objects
 __filesDeleteLoad.py__ - Deletes file objects by id  
 __urlMappingLoad.py__ - Bulk edit and create URL mapping objects   
 __urlMappingSlothRestore.py__ - Find and restore deleted mapping objects   
+__postsSlothRestore.py__ - Find and restore deleted post objects   
 __cmsFinder.py__ - Figures out which CMS a page uses and grades it in PSI (desktop and mobile)   
 __cdn1Replacer.py__ - Finds cdn1 image src uri in post bodies, and replaces them with newly uploaded cdn2 files  
 
@@ -94,6 +95,22 @@ This Python python takes two agruments: `accessToken` & `slothStart`
 $ python3 urlMappingSlothRestore.py 1234-5678-9123-4567 1529816400000  
 ```
 Runs `urlMappingSlothRestore.py` finding mappings deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567` 
+
+## postsSlothRestore.py
+A Python python to find deleted posts and restore them  
+_REQUIRES_  
+[requests](http://docs.python-requests.org/en/master/)  
+
+_USAGE_  
+This Python python takes three agruments: `accessToken`, `slothStart` & `contentGroupId`    
+`accessToken` - An access_token for the portal you want to urlMappingSlothRestore  
+`slothStart` - A millisecond unix timestamp used in the `deleted_at__gt` request parameter to dictate the start time of file deletion timestamps to GET  
+`contentGroupId` - The blog id to find deleted posts in 
+
+```
+$ python3 postsSlothRestore.py 1234-5678-9123-4567 1529816400000 2509275571  
+```
+Runs `postsSlothRestore.py` finding posts deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567` in blog `2509275571`   
 
 ## cmsFinder.py
 _REQUIRES_  
