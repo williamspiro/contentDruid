@@ -17,8 +17,8 @@ for slothedPageObject in slothedPageObjects:
     slothedPageId = slothedPageObject["id"]
     slothedDeletedBy = slothedPageObject["deletedBy"]
     slothedstate_when_deleted = slothedPageObject["meta"]["state_when_deleted"]
+    pageApiRestore = (f"{pagesApiBase}/{slothedPageId}/restore-deleted?access_token={accessToken}")
     if slothedDeletedBy == "SCOPE_CHANGE" and slothedstate_when_deleted == "PUBLISHED_OR_SCHEDULED":
-        pageApiRestore = (f"{pagesApiBase}/{slothedPageId}/restore-deleted?access_token={accessToken}")
         restorePage = requests.put(pageApiRestore)
         if restorePage.status_code == 200:
             pageRestoreRequestUri = (f"{pagesApiBase}/{slothedPageId}/publish-action?access_token={accessToken}")
@@ -31,7 +31,6 @@ for slothedPageObject in slothedPageObjects:
         else:
             print (f"Hmmm, something went wrong resoring page id {slothedPageId}")
     elif slothedDeletedBy == "SCOPE_CHANGE":
-        pageApiRestore = (f"{pagesApiBase}/{slothedPageId}/restore-deleted?access_token={accessToken}")
         restorePage = requests.put(pageApiRestore)
         if restorePage.status_code == 200:
             print (f"Restored page id {slothedPageId}, but did not publish it as it was not PUBLISHED_OR_SCHEDULED when deleted")
