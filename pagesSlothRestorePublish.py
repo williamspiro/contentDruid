@@ -22,7 +22,7 @@ for slothedPageObject in slothedPageObjects:
         restorePage = requests.put(pageApiRestore)
         if restorePage.status_code == 200:
             if slothedstate_when_deleted == "PUBLISHED_OR_SCHEDULED":
-                pageRestoreRequestUri = (f"https://api.hubspot.com/cospages/v1/landing-pages/{slothedPageId}/publish-action?access_token={accessToken}")
+                pageRestoreRequestUri = (f"{pagesApiBase}/{slothedPageId}/publish-action?access_token={accessToken}")
                 publishPagePayload = {'action': 'schedule-publish'}
                 restoredPage = requests.post(pageRestoreRequestUri, json=publishPagePayload)
                 if restoredPage.status_code == 204:
