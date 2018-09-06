@@ -119,15 +119,14 @@ _REQUIRES_
 [requests](http://docs.python-requests.org/en/master/)  
 
 _USAGE_  
-This Python python takes three agruments: `accessToken`, `slothStart`  
-
+This Python python takes two arguments: `accessToken`, `slothStart`  
 `accessToken` - An access_token for the portal you want to urlMappingSlothRestore  
 `slothStart` - A millisecond unix timestamp used in the `deleted_at__gt` request parameter to dictate the start time of file deletion timestamps to GET  
 
 ```
-$ python3 pagesSlothRestore.py 1234-5678-9123-4567 1529816400000 2509275571  
+$ python3 pagesSlothRestorePublish.py 1234-5678-9123-4567 1529816400000    
 ```
-Runs `pagesSlothRestore.py` finding pages deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567` and publishes them    
+Runs `pagesSlothRestorePublish.py` finding pages deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567` and publishes them    
 
 ## cmsFinder.py
 _REQUIRES_  
