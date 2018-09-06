@@ -34,5 +34,5 @@ for slothedPageObject in slothedPageObjects:
         else:
             print (f"Hmmm, something went wrong resoring page id {slothedPageId}")
     else: 
-        print ("Found deleted page {slothedPageId}, but it was not deleted by SCOPE_CHANGE")
+        print (f"Found deleted page {slothedPageId}, but it was not deleted by SCOPE_CHANGE")
     sleep(.33)
