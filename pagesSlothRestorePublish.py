@@ -17,21 +17,25 @@ for slothedPageObject in slothedPageObjects:
     slothedPageId = slothedPageObject["id"]
     slothedDeletedBy = slothedPageObject["deletedBy"]
     slothedstate_when_deleted = slothedPageObject["meta"]["state_when_deleted"]
-    if slothedDeletedBy == "SCOPE_CHANGE":
+    if slothedDeletedBy == "SCOPE_CHANGE" and slothedstate_when_deleted == "PUBLISHED_OR_SCHEDULED":
         pageApiRestore = (f"{pagesApiBase}/{slothedPageId}/restore-deleted?access_token={accessToken}")
         restorePage = requests.put(pageApiRestore)
         if restorePage.status_code == 200:
-            if slothedstate_when_deleted == "PUBLISHED_OR_SCHEDULED":
-                pageRestoreRequestUri = (f"{pagesApiBase}/{slothedPageId}/publish-action?access_token={accessToken}")
-                publishPagePayload = {'action': 'schedule-publish'}
-                restoredPage = requests.post(pageRestoreRequestUri, json=publishPagePayload)
-                if restoredPage.status_code == 204:
-                    print (f"Restored and published page id {slothedPageId}")
-                else:
-                    print (f"Failed to publish page id {slothedPageId}")
-            else: 
-                print (f"Restored page id {slothedPageId}, but did not restore it as it was not PUBLISHED_OR_SCHEDULED when deleted")
+            pageRestoreRequestUri = (f"{pagesApiBase}/{slothedPageId}/publish-action?access_token={accessToken}")
+            publishPagePayload = {'action': 'schedule-publish'}
+            publishedPage = requests.post(pageRestoreRequestUri, json=publishPagePayload)
+            if publishedPage.status_code == 204:
+                print (f"Restored and published page id {slothedPageId}")
+            else:
+                print (f"Failed to publish page id {slothedPageId}, but it was restored")
         else:
+            print (f"Hmmm, something went wrong resoring page id {slothedPageId}")
+    elif slothedDeletedBy == "SCOPE_CHANGE":
+        pageApiRestore = (f"{pagesApiBase}/{slothedPageId}/restore-deleted?access_token={accessToken}")
+        restorePage = requests.put(pageApiRestore)
+        if restorePage.status_code == 200:
+            print (f"Restored page id {slothedPageId}, but did not publish it as it was not PUBLISHED_OR_SCHEDULED when deleted")
+        else: 
             print (f"Hmmm, something went wrong resoring page id {slothedPageId}")
     else: 
         print (f"Found deleted page {slothedPageId}, but it was not deleted by SCOPE_CHANGE")
