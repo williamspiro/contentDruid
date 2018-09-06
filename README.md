@@ -120,7 +120,6 @@ _REQUIRES_
 
 _USAGE_  
 This Python python takes two arguments: `accessToken`, `slothStart`  
-
 `accessToken` - An access_token for the portal you want to urlMappingSlothRestore  
 `slothStart` - A millisecond unix timestamp used in the `deleted_at__gt` request parameter to dictate the start time of file deletion timestamps to GET  
 
