@@ -9,6 +9,7 @@ __urlMappingLoad.py__ - Bulk edit and create URL mapping objects
 __urlMappingSlothRestore.py__ - Find and restore deleted mapping objects   
 __postsSlothRestore.py__ - Find and restore deleted post objects  
 __pagesSlothRestorePublish.py__ - Find, restore and publish deleted page objects 
+__moveWebsiteToLanding.py__ - Move all Website Pages to Landing pages
 __cmsFinder.py__ - Figures out which CMS a page uses and grades it in PSI (desktop and mobile)   
 __cdn1Replacer.py__ - Finds cdn1 image src uri in post bodies, and replaces them with newly uploaded cdn2 files  
 
@@ -120,6 +121,7 @@ _REQUIRES_
 
 _USAGE_  
 This Python python takes two arguments: `accessToken`, `slothStart`  
+
 `accessToken` - An access_token for the portal you want to urlMappingSlothRestore  
 `slothStart` - A millisecond unix timestamp used in the `deleted_at__gt` request parameter to dictate the start time of file deletion timestamps to GET  
 
@@ -127,6 +129,21 @@ This Python python takes two arguments: `accessToken`, `slothStart`
 $ python3 pagesSlothRestorePublish.py 1234-5678-9123-4567 1529816400000    
 ```
 Runs `pagesSlothRestorePublish.py` finding pages deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567` and publishes them    
+
+## moveWebsiteToLanding.py
+A Python python to move all Website Pages to Landing Pages  
+_REQUIRES_  
+[requests](http://docs.python-requests.org/en/master/)  
+
+_USAGE_  
+This Python python takes one argument: `accessToken`  
+
+`accessToken` - An access_token for the portal you want to moveWebsiteToLanding  
+
+```
+$ python3 moveWebsiteToLanding.py 1234-5678-9123-4567  
+```
+Runs `moveWebsiteToLanding.py` moving all website pages to landing pages for portal with access token `1234-5678-9123-4567`   
 
 ## cmsFinder.py
 _REQUIRES_  
