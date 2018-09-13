@@ -147,7 +147,7 @@ $ python3 moveWebsiteToLanding.py 1234-5678-9123-4567
 Runs `moveWebsiteToLanding.py` moving all website pages to landing pages for portal with access token `1234-5678-9123-4567`   
 
 ## domainNullifier.py
-A Python python to null out the domain field for pages on a certain domain. This is helpful to allow pages (ENT portals) to inherit the domain that is porimary for their content type      
+A Python python to null out the domain field for pages on a certain domain. This is helpful to allow pages (ENT portals) to inherit the domain that is primary for their content type. CAREFUL this will null out the domain for every page on a domain, so refine the `pagesSlothApiQuery` if you only want to touch some pages        
 _REQUIRES_  
 [requests](http://docs.python-requests.org/en/master/)  
 
