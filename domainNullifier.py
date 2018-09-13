@@ -5,8 +5,8 @@ import sys
 
 accessToken = sys.argv[1]
 domain = sys.argv[2]
-apiBase = (f"https://api.hubapi.com/cospages/v1/pages/list/{domain}")
-pagesSlothApiQuery = (f"access_token={accessToken}&limit=1000&property=id&property=domain")
+apiBase = (f"https://api.hubapi.com/cospages/v1/pages")
+pagesSlothApiQuery = (f"access_token={accessToken}&limit=1000&property=id&property=domain&domain={domain}")
 
 slothedPages = requests.get(apiBase, params=pagesSlothApiQuery)
 slothedPageObjects = slothedPages.json()["objects"]
@@ -16,7 +16,7 @@ for slothedPageObject in slothedPageObjects:
     slothedPageDomain = slothedPageObject["domain"]
     if slothedPageDomain == domain:
         print (f"Page ID {slothedPageId} has a specified domain key of {domain}, attempting to clear now")
-        pageDomainNullifyUri = (f"https://api.hubspot.com/cospages/v1/landing-pages/{slothedPageId}?access_token={accessToken}")
+        pageDomainNullifyUri = (f"{apiBase}/{slothedPageId}?access_token={accessToken}")
         pageDomainNullifyPayload = {'domain': ''}
         pageDomainNullifyPage = requests.put(pageDomainNullifyUri, json=pageDomainNullifyPayload)
         if pageDomainNullifyPage.status_code == 200:
