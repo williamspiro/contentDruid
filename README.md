@@ -10,6 +10,7 @@ __urlMappingSlothRestore.py__ - Find and restore deleted mapping objects
 __postsSlothRestore.py__ - Find and restore deleted post objects  
 __pagesSlothRestorePublish.py__ - Find, restore and publish deleted page objects 
 __moveWebsiteToLanding.py__ - Move all Website Pages to Landing pages
+__domainNullifier.py__ - Null out the domain field for pages on a certain domain
 __cmsFinder.py__ - Figures out which CMS a page uses and grades it in PSI (desktop and mobile)   
 __cdn1Replacer.py__ - Finds cdn1 image src uri in post bodies, and replaces them with newly uploaded cdn2 files  
 
@@ -144,6 +145,22 @@ This Python python takes one argument: `accessToken`
 $ python3 moveWebsiteToLanding.py 1234-5678-9123-4567  
 ```
 Runs `moveWebsiteToLanding.py` moving all website pages to landing pages for portal with access token `1234-5678-9123-4567`   
+
+## domainNullifier.py
+A Python python to null out the domain field for pages on a certain domain. This is helpful to allow pages (ENT portals) to inherit the domain that is porimary for their content type      
+_REQUIRES_  
+[requests](http://docs.python-requests.org/en/master/)  
+
+_USAGE_  
+This Python python takes two argument: `accessToken` & `domain`  
+
+`accessToken` - An access_token for the portal you want to domainNullifier  
+`domain` - The domain of pages you want to domainNullifier  
+
+```
+$ python3 moveWebsiteToLanding.py 1234-5678-9123-4567 www.domain.com  
+```
+Runs `moveWebsiteToLanding.py` for pages on www.domain.com, nulling out the `domain` field for pages which have it set as the `domain` argument,allowing these pages to inherit the domain that is porimary for their content type  for portal with access token `1234-5678-9123-4567`   
 
 ## cmsFinder.py
 _REQUIRES_  
