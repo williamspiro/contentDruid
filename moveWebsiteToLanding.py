@@ -5,7 +5,7 @@ import sys
 
 accessToken = sys.argv[1]
 pagesApiBase = "https://api.hubapi.com/cospages/v1/pages"
-pagesSlothApiQuery = (f"access_token={accessToken}&subcategory__eq=site_page&limit=1000")
+pagesSlothApiQuery = (f"access_token={accessToken}&subcategory__eq=site_page&limit=1000&property=id")
 
 slothedWebsitePages = requests.get(pagesApiBase, params=pagesSlothApiQuery)
 slothedWebsitePageObjects = slothedWebsitePages.json()["objects"]
