@@ -12,7 +12,6 @@ domain = sys.argv[2]
 pageApiBase = "https://api.hubapi.com/cospages/v1/pages"
 getPagesQueryString = (f"access_token={accessToken}&limit=2&state__in=PUBLISHED&state__in=PUBLISHED_AB&state__in=PUBLISHED_OR_SCHEDULED&subcategory__eq=site_page")
 
-
 getSitePages = requests.get(f"{pageApiBase}/list/{domain}", params = getPagesQueryString)
 getSitePagesObjects = getSitePages.json()["objects"]
 
@@ -35,7 +34,7 @@ for sitePageObject in getSitePagesObjects:
         updateUrlBody = {"slug":f"{slug}-archived"}
         updateUrlRequest = requests.put(f"{pageApiBase}/{pageId}?access_token={accessToken}", json = updateUrlBody)
 
-        if.updateUrlRequest.status_code == 200:
+        if updateUrlRequest.status_code == 200:
             print(f"Unpublished, archived and updated slug of page {pageId}")
         else:
             print(f"Unpublished and archived page {pageId}, failed to update slug")
