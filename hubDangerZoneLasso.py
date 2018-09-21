@@ -1,3 +1,4 @@
+from time import sleep
 import requests
 import json
 import sys
@@ -36,3 +37,4 @@ for page in pages:
             print(f"READMODE: Found and would have replaced imstances of {stringToLasso} in page {pageId}. New page JSON: {lassoedPage}")
     else:
         print(f"No instances of {stringToLasso} in {pageId}")
+    sleep(.33)
