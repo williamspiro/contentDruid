@@ -13,6 +13,7 @@ __moveWebsiteToLanding.py__ - Move all Website Pages to Landing pages
 __domainNullifier.py__ - Null out the domain field for pages on a certain domain  
 __cmsFinder.py__ - Figures out which CMS a page uses and grades it in PSI (desktop and mobile)   
 __cdn1Replacer.py__ - Finds cdn1 image src uri in post bodies, and replaces them with newly uploaded cdn2 files  
+__hubDangerZoneLasso.py__ - Finds and replaces ALL instances of a string in page objects  
 
 ## filesSlothRestore.py
 A Python python to find deleted file objects and restore them  
@@ -185,3 +186,19 @@ This Python python finds cdn1 images in post bodies, creates a cdn2 version of t
 $ python3 cdn1Replacer.py 1234-5678-9123-4567  6053289841
 ```
 This will look at the post bodies of all blog posts in blog id 6053289841, fnding all cdn1 image sources, creating a new cdn2 file, forumlating a new post body with the cdn2 image sources, and updating the blog post
+
+## hubDangerZoneLasso.py
+THIS IS SKETCHY, ONLY USE IN DIRE SITUATIONS 
+_REQUIRES_  
+[requests](http://docs.python-requests.org/en/master/)  
+
+_USAGE_  
+This Python python finds ALL instances of a string, and replaces it with another STRING ANYWHERE in a page object. The string can be nested anywhere on the JSON tree of the page object and it will be replaced. The replaced page object is then PUT back and made live. This Python python takes four agruments: `accessToken`, `stringToLasso`, `lassoReplace` & `mode`  
+`accessToken` - An access_token for the portal you want to urlMappingSlothRestore  
+`stringToLasso` - The string to find  
+`lassoReplace` - The string to replace with  
+`mode` - Will not actually update anything unless this argument is equal to `write`
+```
+$ python3 hubDangerZoneLasso.py 1234-5678-9123-4567 findme replacewithme write
+```
+This will look at all page objects in portal with `access_token` 1234-5678-9123-4567, finding and replacing ALL INSTANCES OF "findme" with "replacewithme", and updating the page with the newwly replaced content
