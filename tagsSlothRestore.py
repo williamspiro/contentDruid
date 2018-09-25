@@ -29,5 +29,5 @@ for slothedTagObject in slothedTagObjects:
             else:
                 print (f"Restored tag {slothedTagId}")
         else:
-            print (f"Hmmm, something wen wrong resoring tag id {slothedTagId}")
+            print (f"Hmmm, something went wrong resoring tag id {slothedTagId}")
         sleep(.33)
