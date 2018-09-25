@@ -9,6 +9,7 @@ __urlMappingLoad.py__ - Bulk edit and create URL mapping objects
 __urlMappingSlothRestore.py__ - Find and restore deleted mapping objects   
 __postsSlothRestore.py__ - Find and restore deleted post objects  
 __pagesSlothRestorePublish.py__ - Find, restore and publish deleted page objects  
+__tagsSlothRestore.py__ - Find and restore deleted tag objects  
 __moveWebsiteToLanding.py__ - Move all Website Pages to Landing pages  
 __domainNullifier.py__ - Null out the domain field for pages on a certain domain  
 __cmsFinder.py__ - Figures out which CMS a page uses and grades it in PSI (desktop and mobile)   
@@ -131,6 +132,22 @@ This Python python takes two arguments: `accessToken`, `slothStart`
 $ python3 pagesSlothRestorePublish.py 1234-5678-9123-4567 1529816400000    
 ```
 Runs `pagesSlothRestorePublish.py` finding pages deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567` and publishes them    
+
+## tagsSlothRestore.py
+A Python python to find deleted tag objects and restore them  
+_REQUIRES_  
+[requests](http://docs.python-requests.org/en/master/)  
+
+_USAGE_  
+This Python python takes two agruments: `accessToken` & `slothStart`  
+`accessToken` - An access_token for the portal you want to tagsSlothRestore  
+`slothStart` - A millisecond unix timestamp to dictate tags deleted after X timestamp to be restored  
+
+```
+$ python3 tagsSlothRestore.py 1234-5678-9123-4567 1529816400000  
+```
+Runs `tagsSlothRestore.py` finding tags deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567`  
+
 
 ## moveWebsiteToLanding.py
 A Python python to move all Website Pages to Landing Pages  
