@@ -14,9 +14,8 @@ print (f"Hold your butts! Moving {slothedWebsitePageObjectsCount} website pages 
 
 for slothedWebsitePageObject in slothedWebsitePageObjects:
     slothedPageId = slothedWebsitePageObject["id"]
-    wpTpLpUri = (f"{pagesApiBase}/{slothedPageId}?access_token={accessToken}")
-    wpTpLpPayload = {"subcategory": "landing_page"}
-    movePageRequest = requests.put(wpTpLpUri, json=wpTpLpPayload)
+    wpTpLpUri = (f"{pagesApiBase}/{slothedPageId}/subcategory-move?access_token={accessToken}")
+    movePageRequest = requests.post(wpTpLpUri, data="landing_page")
     if movePageRequest.status_code == 200:
         print (f"Moved page {slothedPageId} to Landing Pages")
     else:
