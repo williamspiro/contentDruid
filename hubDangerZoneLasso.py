@@ -11,9 +11,9 @@ mode = sys.argv[4]
 pagesApiBase = "https://api.hubapi.com/cospages/v1/pages"
 listPagesQueryString = (f"access_token={accessToken}&limit=300")
 
-def lassoString(page, oldString, newString):
-    page = page.replace(oldString, newString)
-    return page
+def lassoString(pageDump, oldString, newString):
+    pageDump = pageDump.replace(oldString, newString)
+    return pageDump
 
 def updatePage(pageId, revisedJson):
     postUpdateUrl = (f"{pagesApiBase}/{pageId}?access_token={accessToken}")
@@ -24,9 +24,9 @@ pageObjects = requests.get(pagesApiBase, params=listPagesQueryString)
 pages = pageObjects.json()["objects"]
 for page in pages:
     pageId = page["id"]
-    page = json.dumps(pageObjects.json())
-    if stringToLasso in page:
-        replacedPage = lassoString(page, stringToLasso, lassoReplace)
+    pageDump = json.dumps(page)
+    if stringToLasso in pageDump:
+        replacedPage = lassoString(pageDump, stringToLasso, lassoReplace)
         if mode == "write":
             lassoedPage = updatePage(pageId, replacedPage)
             if lassoedPage.status_code == 200:
