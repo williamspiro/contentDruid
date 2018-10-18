@@ -176,9 +176,9 @@ This Python python takes two argument: `accessToken` & `domain`
 `domain` - The domain of pages you want to domainNullifier  
 
 ```
-$ python3 moveWebsiteToLanding.py 1234-5678-9123-4567 www.domain.com  
+$ python3 domainNullifier.py 1234-5678-9123-4567 www.domain.com  
 ```
-Runs `moveWebsiteToLanding.py` for pages on www.domain.com, nulling out the `domain` field for pages which have it set as the `domain` argument, allowing these pages to inherit the domain that is primary for their content type  for portal with access token `1234-5678-9123-4567`   
+Runs `domainNullifier.py` for pages on www.domain.com, nulling out the `domain` field for pages which have it set as the `domain` argument, allowing these pages to inherit the domain that is primary for their content type  for portal with access token `1234-5678-9123-4567`   
 
 ## cmsFinder.py
 _REQUIRES_  
