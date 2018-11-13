@@ -48,11 +48,4 @@ for post in posts:
     else:
         print(f"Post id {postId} already has featured images enabled, and is set to {postFeaturedImage}")
     sleep(.2)
-
-
-
-
-
-
-
-
+    
