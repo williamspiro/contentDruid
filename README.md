@@ -8,7 +8,7 @@ __filesDeleteLoad.py__ - Deletes file objects by id
 __urlMappingLoad.py__ - Bulk edit and create URL mapping objects   
 __urlMappingSlothRestore.py__ - Find and restore deleted mapping objects   
 __postsSlothRestore.py__ - Find and restore deleted post objects  
-__findSetFeaturedImages.py__ - find and set featured images for blog post objects  
+__findSetFeaturedImages.py__ - Find and set featured images for blog post objects  
 __pagesSlothRestorePublish.py__ - Find, restore and publish deleted page objects  
 __tagsSlothRestore.py__ - Find and restore deleted tag objects  
 __moveWebsiteToLanding.py__ - Move all Website Pages to Landing pages  
