@@ -7,7 +7,7 @@ import re
 accessToken = sys.argv[1]
 contentGroupId = sys.argv[2]
 postsApiBase = "https://api.hubapi.com/blogs/v3/blog-posts"
-listPostsQueryString = (f"access_token={accessToken}&limit=100&content_group_id={contentGroupId}&property=id&property=postBody&property=useFeaturedImage&property=featuredImage")
+listPostsQueryString = (f"access_token={accessToken}&limit=300&content_group_id={contentGroupId}&property=id&property=postBody&property=useFeaturedImage&property=featuredImage")
 
 def setFeaturedImage(featuredImageUri, postIdToUpdate):
     postUpdateUrl = (f"{postsApiBase}/{postIdToUpdate}?access_token={accessToken}")
@@ -48,4 +48,3 @@ for post in posts:
     else:
         print(f"Post id {postId} already has featured images enabled, and is set to {postFeaturedImage}")
     sleep(.2)
-    
