@@ -117,6 +117,23 @@ $ python3 postsSlothRestore.py 1234-5678-9123-4567 1529816400000 2509275571
 ```
 Runs `postsSlothRestore.py` finding posts deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567` in blog `2509275571`   
 
+## postsSlothRestorePublish.py
+A Python python to find deleted posts and restore them (if they were published at the time of deletion AND they were deleted by the target user)  
+_REQUIRES_  
+[requests](http://docs.python-requests.org/en/master/)  
+
+_USAGE_  
+This Python python takes four agruments: `accessToken`, `slothStart`, `contentGroupId`, & `targetDeletedBy`    
+`accessToken` - An access_token for the portal you want to affect
+`slothStart` - A millisecond unix timestamp used in the `deleted_at__gt` request parameter to dictate the start time of file deletion timestamps to GET  
+`contentGroupId` - The blog id to find deleted posts in
+`targetDeletedBy` - The email address of the user who deleted the post
+
+```
+$ python3 postsSlothRestorePublish.py 1234-5678-9123-4567 1529816400000 2509275571 john_doe@gmail.com 
+```
+Runs `postsSlothRestorePublish.py` finding posts deleted after 1529816400000 (June 24th, 2018 0:00:00) by john_doe@gmail.com for portal with access token `1234-5678-9123-4567` in blog `2509275571` and republishes them if they were published when john_doe deleted them. 
+
 ## pagesSlothRestorePublish.py
 A Python python to find deleted pages, restore, and publish them  
 _REQUIRES_  
