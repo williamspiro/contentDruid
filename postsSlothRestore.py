@@ -19,7 +19,13 @@ for slothedPostObject in slothedPostObjects:
     postsApiRestore = (f"{postsApiBase}/{slothedPostId}/restore-deleted?access_token={accessToken}")
     restorePost = requests.put(postsApiRestore)
     if restorePost.status_code == 200:
-        print (f"Restored post id {slothedPostId}")
+        postRestoreRequestUri = (f"{postsApiBase}/{slothedPostId}/publish-action?access_token={accessToken}")
+        publishPostPayload = {'action': 'schedule-publish'}
+        publishedPost = requests.post(postRestoreRequestUri, json=publishPostPayload)
+        if publishedPost.status_code == 204:
+            print (f"Restored and published post id {slothedPostId}")
+        else:
+            print (f"Failed to publish post id {slothedPostId}, but it was restored")
     else:
-        print (f"Hmmm, something wen wrong resoring post id {slothedPostId}")
+        print (f"Hmmm, something went wrong resoring post id {slothedPostId}")
     sleep(.33)
