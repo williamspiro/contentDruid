@@ -8,6 +8,7 @@ __filesDeleteLoad.py__ - Deletes file objects by id
 __urlMappingLoad.py__ - Bulk edit and create URL mapping objects   
 __urlMappingSlothRestore.py__ - Find and restore deleted mapping objects   
 __postsSlothRestore.py__ - Find and restore deleted post objects  
+__findSetFeaturedImages.py__ - Find and set featured images for blog post objects  
 __pagesSlothRestorePublish.py__ - Find, restore and publish deleted page objects  
 __tagsSlothRestore.py__ - Find and restore deleted tag objects  
 __moveWebsiteToLanding.py__ - Move all Website Pages to Landing pages  
@@ -116,6 +117,21 @@ This Python python takes three agruments: `accessToken`, `slothStart` & `content
 $ python3 postsSlothRestore.py 1234-5678-9123-4567 1529816400000 2509275571  
 ```
 Runs `postsSlothRestore.py` finding posts deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567` in blog `2509275571`   
+
+## findSetFeaturedImages.py
+A Python python which goes through all posts in a blog and enables featured images, finding and setting an image from the post body as featured if one is not already set. If a post has no post body images, nothing will happen to that post.    
+_REQUIRES_  
+[requests](http://docs.python-requests.org/en/master/)  
+
+_USAGE_  
+This Python python takes 2 arguments:  `accessToken` & `contentGroupId`  
+`accessToken` - An access_token for the portal you want to findSetFeaturedImages  
+`contentGroupId`- The blog id of the blog you want to findSetFeaturedImages  
+
+```
+$ python3 findSetFeaturedImages.py sdfgsdfg-5537-sdfgs-bae6-23455 6515379725
+```
+Loops through all posts in blog id 6515379725 for portal with acces token `sdfgsdfg-5537-sdfgs-bae6-23455`, finding and setting featured images for all posts  
 
 ## pagesSlothRestorePublish.py
 A Python python to find deleted pages, restore, and publish them  
