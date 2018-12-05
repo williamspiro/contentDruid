@@ -7,6 +7,7 @@ __filesSlothRestore.py__ - Find and restore deleted file objects
 __filesDeleteLoad.py__ - Deletes file objects by id  
 __urlMappingLoad.py__ - Bulk edit and create URL mapping objects   
 __urlMappingSlothRestore.py__ - Find and restore deleted mapping objects   
+__urlMappingPurge.py__ - Find and delete all url mapping objects     
 __postsSlothRestore.py__ - Find and restore deleted post objects  
 __findSetFeaturedImages.py__ - Find and set featured images for blog post objects  
 __pagesSlothRestorePublish.py__ - Find, restore and publish deleted page objects  
@@ -101,6 +102,20 @@ This Python python takes two agruments: `accessToken` & `slothStart`
 $ python3 urlMappingSlothRestore.py 1234-5678-9123-4567 1529816400000  
 ```
 Runs `urlMappingSlothRestore.py` finding mappings deleted after 1529816400000 (June 24th, 2018 0:00:00) for portal with access token `1234-5678-9123-4567` 
+
+## urlMappingPurge.py
+A Python python to find and delete ALL mappings in a portal       
+_REQUIRES_  
+[requests](http://docs.python-requests.org/en/master/)  
+
+_USAGE_  
+This Python python takes one agrument: `accessToken`  
+`accessToken` - An access_token for the portal you want to `urlMappingPurge`  
+
+```
+$ python3 urlMappingPurge.py 1234-5678-9123-4567  
+```
+Runs `urlMappingPurge.py` finding and deleting all mappings for portal with access token `1234-5678-9123-4567` 
 
 ## postsSlothRestore.py
 A Python python to find deleted posts and restore them  
